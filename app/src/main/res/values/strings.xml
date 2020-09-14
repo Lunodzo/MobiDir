@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">MobiDir</string>
+    <string name="homeText">Stay in Touch with the companies contacts, service and operations updates</string>
+    <string name="email">support@mobidir.com</string>
+    <string name="phone">+255(0) 766 787 978</string>
+    <string name="web">www.mobidir.com</string>
+    <string name="load">Stay in touch with Companies</string>
+    <string name="desc_splash">Splash Image</string>
+    <string name="contactsTitle">Forum Contacts</string>
+    <string name="companyTitle">Add Company</string>
+</resources>
