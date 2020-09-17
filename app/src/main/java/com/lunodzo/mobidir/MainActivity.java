@@ -23,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
             Intent contactIntent = new Intent(getApplicationContext(), ContactsActivity.class);
             startActivity(contactIntent);
         }
-        else if(view.getId() == R.id.btn_register){
-            Intent registerIntent = new Intent(getApplicationContext(), CompanyActivity.class);
+        else {
+            view.getId();
         }
     }
 }

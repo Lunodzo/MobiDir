@@ -8,4 +8,14 @@
     <string name="desc_splash">Splash Image</string>
     <string name="contactsTitle">Forum Contacts</string>
     <string name="companyTitle">Add Company</string>
+    <string name="company_full_name">Company Full Name</string>
+    <string name="company_email_address">Company Email Address</string>
+    <string name="company_phone_number">Company Phone Number</string>
+    <string name="company_website">Company Website</string>
+    <string name="submit">Submit</string>
+    <string name="imageDesc">TODO</string>
+    <string name="add_company">Add Company</string>
+    <string name="registered_companies">Registered Companies</string>
+    <string name="search">Search</string>
+    <string name="forum_contacts">Forum Contacts</string>
 </resources>

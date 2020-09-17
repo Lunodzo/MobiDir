@@ -8,9 +8,10 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_margin="10dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="4"
-        android:src="@drawable/contacts"/>
+        android:src="@drawable/contacts"
+        android:contentDescription="@string/imageDesc" />
 
     <Button
         android:id="@+id/supportEmail"
@@ -20,7 +21,8 @@
         android:textAllCaps="false"
         android:drawableRight="@drawable/email"
         android:text="@string/email"
-        android:textColor="@color/colorMain" />
+        android:textColor="@color/colorMain"
+        android:drawableEnd="@drawable/email" />
 
     <Button
         android:id="@+id/supportNumber"
@@ -31,7 +33,8 @@
         android:textAllCaps="false"
         android:drawableRight="@drawable/phone"
         android:text="@string/email"
-        android:textColor="@color/colorMain" />
+        android:textColor="@color/colorMain"
+        android:drawableEnd="@drawable/phone" />
 
     <Button
         android:id="@+id/supportWeb"
@@ -42,6 +45,7 @@
         android:background="#000000"
         android:drawableRight="@drawable/website"
         android:text="@string/email"
-        android:textColor="@color/colorMain" />
+        android:textColor="@color/colorMain"
+        android:drawableEnd="@drawable/website" />
 
 </LinearLayout>
