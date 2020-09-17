@@ -14,6 +14,9 @@ public class CompanyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company);
 
+        //Back icon on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Button btnSubmit = findViewById(R.id.btn_submit);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

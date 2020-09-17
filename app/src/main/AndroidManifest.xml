@@ -13,9 +13,11 @@
 
         <activity
             android:name=".CompanyActivity"
-            android:label="@string/companyTitle" />
+            android:label="@string/companyTitle"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".ContactsActivity"
-            android:label="@string/contactsTitle"/>
+            android:label="@string/contactsTitle"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
