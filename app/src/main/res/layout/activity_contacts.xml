@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorMain"
+    android:background="@color/primary_light"
     android:layout_height="match_parent">
 
     <ImageView
@@ -17,11 +17,11 @@
         android:id="@+id/supportEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="@color/primary_dark"
         android:textAllCaps="false"
         android:drawableRight="@drawable/email"
         android:text="@string/email"
-        android:textColor="@color/colorMain"
+        android:textColor="@color/color_white"
         android:drawableEnd="@drawable/email" />
 
     <Button
@@ -29,11 +29,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="#000000"
+        android:background="@color/primary_dark"
         android:textAllCaps="false"
         android:drawableRight="@drawable/phone"
         android:text="@string/email"
-        android:textColor="@color/colorMain"
+        android:textColor="@color/color_white"
         android:drawableEnd="@drawable/phone" />
 
     <Button
@@ -42,10 +42,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:background="#000000"
+        android:background="@color/primary_dark"
         android:drawableRight="@drawable/website"
         android:text="@string/email"
-        android:textColor="@color/colorMain"
+        android:textColor="@color/color_white"
         android:drawableEnd="@drawable/website" />
 
 </LinearLayout>

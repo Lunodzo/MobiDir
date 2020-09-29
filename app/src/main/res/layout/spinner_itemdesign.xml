@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,17 +9,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_margin="5dp"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/primary_dark"
+        tools:ignore="UselessParent">
 
         <TextView
             android:id="@+id/itemMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorMain"
+            android:background="@color/primary_light"
             android:layout_marginLeft="4dp"
-            android:text="TextView"
+            android:text="@string/textview"
             android:padding="10dp"
-            android:layout_marginStart="4dp" />
+            android:layout_marginStart="2dp"/>
     </LinearLayout>
 
 </LinearLayout>

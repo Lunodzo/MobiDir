@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    android:background="@color/colorMain">
+    android:background="@color/primary_light">
 
     <EditText
         android:id="@+id/companyName"
@@ -70,10 +70,10 @@
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
+        android:background="@color/primary_dark"
         android:textAllCaps="false"
         android:drawableRight="@android:drawable/ic_menu_send"
         android:text="@string/submit"
-        android:textColor="@color/colorMain"
+        android:textColor="@color/color_white"
         android:drawableEnd="@android:drawable/ic_menu_send" />
 </LinearLayout>

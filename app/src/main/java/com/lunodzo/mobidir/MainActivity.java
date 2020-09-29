@@ -1,10 +1,10 @@
 package com.lunodzo.mobidir;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,17 +14,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+
+
     public void buttonClicked(View view) {
-        if(view.getId() == R.id.btn_add){
-            Intent addIntent = new Intent(getApplicationContext(), CompanyActivity.class);
-            startActivity(addIntent);
-        }
-        else if(view.getId() == R.id.btn_contact){
-            Intent contactIntent = new Intent(getApplicationContext(), ContactsActivity.class);
-            startActivity(contactIntent);
-        }
-        else {
-            view.getId();
+        switch (view.getId()){
+            case R.id.btn_add:
+                Intent addIntent = new Intent(getApplicationContext(), CompanyActivity.class);
+                startActivity(addIntent);
+                break;
+
+            case R.id.btn_contact:
+                Intent contactIntent = new Intent(getApplicationContext(), ContactsActivity.class);
+                startActivity(contactIntent);
+                break;
         }
     }
 }

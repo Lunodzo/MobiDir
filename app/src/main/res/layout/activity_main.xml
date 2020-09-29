@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorMain"
+    android:background="@color/primary_light"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -24,8 +24,8 @@
         android:layout_height="wrap_content"
         android:text="@string/add_company"
         android:layout_margin="2dp"
-        android:textColor="@color/colorMain"
-        android:background="#000000"
+        android:textColor="@color/color_white"
+        android:background="@color/primary_dark"
         android:onClick="buttonClicked"/>
 
     <Button
@@ -35,8 +35,8 @@
         android:layout_height="wrap_content"
         android:text="@string/registered_companies"
         android:layout_margin="2dp"
-        android:textColor="@color/colorMain"
-        android:background="#000000"
+        android:textColor="@color/color_white"
+        android:background="@color/primary_dark"
         android:onClick="buttonClicked"/>
 
     <Button
@@ -46,8 +46,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:text="@string/search"
-        android:textColor="@color/colorMain"
-        android:background="#000000"
+        android:textColor="@color/color_white"
+        android:background="@color/primary_dark"
         android:onClick="buttonClicked"/>
 
     <Button
@@ -57,8 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:text="@string/forum_contacts"
-        android:textColor="@color/colorMain"
-        android:background="#000000"
+        android:textColor="@color/color_white"
+        android:background="@color/primary_dark"
         android:onClick="buttonClicked"/>
-
 </LinearLayout>
