@@ -6,6 +6,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,7 +31,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class CompanyActivity extends AppCompatActivity {
-    String cname, cemail, cphone, cwebsite, region, category;
+    String cname, cemail, cphone, cwebsite, selectedRegion, selectedCategory;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,31 +62,30 @@ public class CompanyActivity extends AppCompatActivity {
         spinnerRegion.setAdapter(regionAdapter);
         spinnerCategory.setAdapter(categoryAdapter);
 
-//        //Add spinner select event listener
-//        spinnerRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                final String selectedRegion = regionNames[position];
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                Toast.makeText(getApplicationContext(), "Select a Region", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        //Add spinner select event listener
+        spinnerRegion.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedRegion = regionNames[position];
+            }
 
-//        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Object selCat = spinnerCategory.getSelectedItem().toString();
-//                final String selectedCategory = categoryNames[position];
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                Toast.makeText(getApplicationContext(), "Select a Category", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedRegion = "Not Specified";
+            }
+        });
+
+        spinnerCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCategory = categoryNames[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                selectedCategory = "Not Specified";
+            }
+        });
 
 
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -95,8 +95,6 @@ public class CompanyActivity extends AppCompatActivity {
                 cemail = companyEmail.getText().toString();
                 cphone = companyPhone.getText().toString();
                 cwebsite = companyWebsite.getText().toString();
-                category = spinnerCategory.getSelectedItem().toString();
-                region = spinnerRegion.getSelectedItem().toString();
 
 
                 if(cname.isEmpty()){
@@ -109,6 +107,8 @@ public class CompanyActivity extends AppCompatActivity {
                     Toast.makeText(CompanyActivity.this, "Company Website is required", Toast.LENGTH_SHORT).show();
                 }
 
+
+                //Execute Async class
                 if (haveNetworkConnection()){
                     new RegisterNewCompany().execute();
                 }else{
@@ -116,16 +116,18 @@ public class CompanyActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
-    //Create progress dialog
-    ProgressDialog pDialog;
-    String php_response;
+
 
 
     //Create an inner class AsyncTask to upload data
     class RegisterNewCompany extends AsyncTask<String,String,String>{
+
+
+        //Create progress dialog
+        ProgressDialog pDialog;
+        String php_response;
 
         //Add the three methods (REQUIRED)
         @Override
@@ -155,8 +157,8 @@ public class CompanyActivity extends AppCompatActivity {
                 nameValuePairs.add(new BasicNameValuePair("cemail",cemail));
                 nameValuePairs.add(new BasicNameValuePair("cphone",cphone));
                 nameValuePairs.add(new BasicNameValuePair("cwebsite",cwebsite));
-                nameValuePairs.add(new BasicNameValuePair("selectCategory", category));
-                nameValuePairs.add(new BasicNameValuePair("selectRegion",region));
+                nameValuePairs.add(new BasicNameValuePair("selectCategory", selectedCategory));
+                nameValuePairs.add(new BasicNameValuePair("selectRegion",selectedRegion));
 
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 HttpResponse response = httpclient.execute(httppost);
@@ -185,6 +187,13 @@ public class CompanyActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            pDialog.dismiss();
+
+            if (php_response.equals("1")){
+                Toast.makeText(CompanyActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(CompanyActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
