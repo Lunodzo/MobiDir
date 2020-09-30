@@ -27,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent contactIntent = new Intent(getApplicationContext(), ContactsActivity.class);
                 startActivity(contactIntent);
                 break;
+
+            case R.id.btn_register:
+                Intent registeredIntent = new Intent(getApplicationContext(), RegisteredCompaniesActivity.class);
+                startActivity(registeredIntent);
+                break;
         }
     }
 }

@@ -1,7 +1,5 @@
 package com.lunodzo.mobidir;
 
-import android.app.Activity;
-import android.app.AsyncNotedAppOp;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -19,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultBackoffStrategy;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
@@ -53,7 +50,7 @@ public class RegisteredCompaniesActivity extends AppCompatActivity {
             super.onPostExecute(s);
             progressDialog.dismiss();
             String[] companiesNames = php_response.split("#");
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(RegisteredCompaniesActivity.this, R.layout.listitemdesign, R.id.textViewItem, companiesNames);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(RegisteredCompaniesActivity.this, R.layout.listitemdesign, R.id.textViewItem, companiesNames);
             companyList.setAdapter(adapter);
             companyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
