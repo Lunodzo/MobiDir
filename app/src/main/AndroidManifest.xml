@@ -19,22 +19,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="HardcodedDebugMode">
+        tools:ignore="HardcodedDebugMode"
+        tools:targetApi="m">
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
 
-        <activity android:name=".CompanyActivity"
+        <activity
+            android:name=".AddCompanyActivity"
             android:label="Add Company"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" />
 
-        </activity>
-        <activity android:name=".ContactsActivity"
+        <activity
+            android:name=".ContactsActivity"
             android:label="@string/contactsTitle"
-            android:parentActivityName=".MainActivity"></activity>
-
+            android:parentActivityName=".MainActivity" />
 
         <activity android:name=".SplashActivity">
             <intent-filter>
@@ -44,13 +45,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
 
-        </activity>
-
-        <activity android:name=".RegisteredCompaniesActivity">
-
-        </activity>
+        <activity
+            android:name=".RegisteredCompaniesActivity"
+            android:label="Companies"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>

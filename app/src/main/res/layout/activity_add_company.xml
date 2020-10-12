@@ -48,14 +48,24 @@
         android:inputType="textWebEditText"
         android:autofillHints="" />
 
+    <EditText
+        android:id="@+id/companyDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:autofillHints="Coming Soon"
+        android:hint="@string/company_description"
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
+
     <Spinner
         android:id="@+id/spinnerRegion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="10dp"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
 
     <Spinner
         android:id="@+id/spinnerCategory"

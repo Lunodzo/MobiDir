@@ -19,13 +19,13 @@ public class MainActivity extends AppCompatActivity {
     public void buttonClicked(View view) {
         switch (view.getId()){
             case R.id.btn_add:
-                Intent addIntent = new Intent(getApplicationContext(), CompanyActivity.class);
+                Intent addIntent = new Intent(getApplicationContext(), AddCompanyActivity.class);
                 startActivity(addIntent);
                 break;
 
             case R.id.btn_contact:
-                Intent contactIntent = new Intent(getApplicationContext(), ContactsActivity.class);
-                startActivity(contactIntent);
+                //Intent contactIntent = new Intent(getApplicationContext(), ContactsActivity.class);
+                startActivity(new Intent(getApplicationContext(), ContactsActivity.class));
                 break;
 
             case R.id.btn_register:

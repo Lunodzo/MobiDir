@@ -1,5 +1,6 @@
 package com.lunodzo.mobidir;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -39,6 +40,7 @@ public class RegisteredCompaniesActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     class RetrieveCompanies extends AsyncTask<String, String, String> {
         ProgressDialog progressDialog;
         String php_response;
@@ -50,8 +52,8 @@ public class RegisteredCompaniesActivity extends AppCompatActivity {
             super.onPostExecute(s);
             progressDialog.dismiss();
             String[] companiesNames = php_response.split("#");
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(RegisteredCompaniesActivity.this, R.layout.listitemdesign, R.id.textViewItem, companiesNames);
-            companyList.setAdapter(adapter);
+            ArrayAdapter<String> adapterCompanyNames = new ArrayAdapter<>(RegisteredCompaniesActivity.this, R.layout.listitemdesign, R.id.textViewItem, companiesNames);
+            companyList.setAdapter(adapterCompanyNames);
             companyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

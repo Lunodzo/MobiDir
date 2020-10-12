@@ -2,11 +2,11 @@ package com.lunodzo.mobidir;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -30,12 +30,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class CompanyActivity extends AppCompatActivity {
-    String cname, cemail, cphone, cwebsite, selectedRegion, selectedCategory;
+public class AddCompanyActivity extends AppCompatActivity {
+    String cname, cemail, cphone, cwebsite, description, selectedRegion, selectedCategory;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company);
+        setContentView(R.layout.activity_add_company);
 
         //Make reference to XML widgets
         final Spinner spinnerRegion = findViewById(R.id.spinnerRegion);
@@ -45,6 +46,7 @@ public class CompanyActivity extends AppCompatActivity {
         final EditText companyEmail = findViewById(R.id.companyEmail);
         final EditText companyPhone = findViewById(R.id.phoneNumber);
         final EditText companyWebsite = findViewById(R.id.companyWebsite);
+        final EditText companyDescription = findViewById(R.id.companyDescription);
         Button buttonSubmit = findViewById(R.id.btn_submit);
 
         //Define data source
@@ -52,11 +54,11 @@ public class CompanyActivity extends AppCompatActivity {
         final String[] categoryNames = new String[]{"Education", "Mining", "Transport", "Agriculture", "Automobile"};
 
         //configure array adapter
-        ArrayAdapter<String> regionAdapter = new ArrayAdapter<String>(
-                CompanyActivity.this,R.layout.spinner_itemdesign,R.id.itemMenu, regionNames);
+        ArrayAdapter<String> regionAdapter = new ArrayAdapter<>(
+                AddCompanyActivity.this, R.layout.spinner_itemdesign, R.id.itemMenu, regionNames);
 
-        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<String>(
-                CompanyActivity.this,R.layout.spinner_itemdesign,R.id.itemMenu, categoryNames);
+        ArrayAdapter<String> categoryAdapter = new ArrayAdapter<>(
+                AddCompanyActivity.this, R.layout.spinner_itemdesign, R.id.itemMenu, categoryNames);
 
         //Assign array adapter to spinner
         spinnerRegion.setAdapter(regionAdapter);
@@ -95,16 +97,17 @@ public class CompanyActivity extends AppCompatActivity {
                 cemail = companyEmail.getText().toString();
                 cphone = companyPhone.getText().toString();
                 cwebsite = companyWebsite.getText().toString();
+                description = companyDescription.getText().toString();
 
 
                 if(cname.isEmpty()){
-                    Toast.makeText(CompanyActivity.this, "Company Name is required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCompanyActivity.this, "Company Name is required", Toast.LENGTH_SHORT).show();
                 }else if (cemail.isEmpty()){
-                    Toast.makeText(CompanyActivity.this, "Email is required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCompanyActivity.this, "Email is required", Toast.LENGTH_SHORT).show();
                 }else if (cphone.isEmpty()){
-                    Toast.makeText(CompanyActivity.this, "Phone is required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCompanyActivity.this, "Phone is required", Toast.LENGTH_SHORT).show();
                 }else if (cwebsite.isEmpty()){
-                    Toast.makeText(CompanyActivity.this, "Company Website is required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCompanyActivity.this, "Company Website is required", Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -112,7 +115,7 @@ public class CompanyActivity extends AppCompatActivity {
                 if (haveNetworkConnection()){
                     new RegisterNewCompany().execute();
                 }else{
-                    Toast.makeText(CompanyActivity.this, "No Internet, Try Again", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddCompanyActivity.this, "No Internet, Try Again", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -133,7 +136,7 @@ public class CompanyActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(CompanyActivity.this);
+            pDialog = new ProgressDialog(AddCompanyActivity.this);
             pDialog.setMessage("Uploading Data");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
@@ -151,14 +154,15 @@ public class CompanyActivity extends AppCompatActivity {
 
                 HttpPost httppost = new HttpPost("http://twiga2.com/mobidir_lunodzo/register_company.php");
 
-                ArrayList<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+                ArrayList<NameValuePair> nameValuePairs = new ArrayList<>(3);
 
                 nameValuePairs.add(new BasicNameValuePair("cname", cname));
-                nameValuePairs.add(new BasicNameValuePair("cemail",cemail));
-                nameValuePairs.add(new BasicNameValuePair("cphone",cphone));
-                nameValuePairs.add(new BasicNameValuePair("cwebsite",cwebsite));
+                nameValuePairs.add(new BasicNameValuePair("cemail", cemail));
+                nameValuePairs.add(new BasicNameValuePair("cphone", cphone));
+                nameValuePairs.add(new BasicNameValuePair("cwebsite", cwebsite));
                 nameValuePairs.add(new BasicNameValuePair("selectCategory", selectedCategory));
-                nameValuePairs.add(new BasicNameValuePair("selectRegion",selectedRegion));
+                nameValuePairs.add(new BasicNameValuePair("selectRegion", selectedRegion));
+                nameValuePairs.add(new BasicNameValuePair("description", description));
 
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
                 HttpResponse response = httpclient.execute(httppost);
@@ -189,10 +193,11 @@ public class CompanyActivity extends AppCompatActivity {
             super.onPostExecute(s);
             pDialog.dismiss();
 
-            if (php_response.equals("1")){
-                Toast.makeText(CompanyActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(CompanyActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            if (php_response.equals("1")) {
+                Toast.makeText(AddCompanyActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), RegisteredCompaniesActivity.class));
+            } else {
+                Toast.makeText(AddCompanyActivity.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         }
     }
